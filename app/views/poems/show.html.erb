@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @poem.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @poem.content %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  	<% @poem.comments.each do |comment| %>
+		<p>Comment: <%= comment.content %></p>
+	<% end %>
+</p>
+
+<p>
+	<b>New Comment:</b>
+	<% form_for [@poem, Comment.new] do |f| %>
+	  <p>
+	    <%= f.label :content %><br />
+	    <%= f.text_area :content %>
+	  </p>
+	  <p><%= f.submit "Submit" %></p>
+	<% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_poem_path(@poem) %> |
+<%= link_to 'Back', poems_path %>
